@@ -32,8 +32,7 @@ public class ProductDecorator implements IProduct {
 	@Override
 	public String toString() {
 		StringBuilder sb = new StringBuilder();
-		sb.append("Produktas: ").append(getName()).append(", ").append(getFormattedPrice(getPrice())).append("$, ")
-				.append(getCategory());
+		sb.append(getName()).append(", ").append(getFormattedPrice(getPrice())).append("$, ").append(getCategory());
 		return sb.toString();
 	}
 }

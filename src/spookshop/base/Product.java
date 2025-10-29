@@ -45,7 +45,7 @@ public class Product implements IProduct {
 	@Override
 	public String toString() {
 		StringBuilder sb = new StringBuilder();
-		sb.append("Produktas: ").append(getName()).append(", ").append(getPrice()).append("$, ").append(getCategory());
+		sb.append(getName()).append(", ").append(getPrice()).append("$, ").append(getCategory());
 		return sb.toString();
 	}
 }

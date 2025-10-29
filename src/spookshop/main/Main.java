@@ -36,5 +36,17 @@ public class Main {
 		PaymentStrategy payment = new BloodPayment();
 		context.setStrategy(payment);
 		context.pay(inventory.getItems());
+
+		SpookShopApplication.writeFile(inventory.getItems(), SpookShopApplication.CART_FILE);
+		/*
+		 * TODO
+		 * 
+		 * - add cart for user
+		 * 
+		 * - import products to inventory from a file client menu
+		 * 
+		 * - running from an application file input/output
+		 * 
+		 */
 	}
 }
