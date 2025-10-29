@@ -11,7 +11,8 @@ public class Main {
 
 	public static void main(String[] args) {
     ProductFactory pf = new ProductFactory();
-		List<Product> inv = Inventory.getInstance();
+		List<Product> inventory = Inventory.getInstance();
+    inventory.addObserver(new ConsoleDisplay()); 
 
 		Product p = pf.createProduct();
     p.setName("Kava");
@@ -20,7 +21,7 @@ public class Main {
 
 		Inventory.addItem(p);
 
-		for (Product prod : inv) {
+		for (Product prod : inventory) {
 			System.out.println(prod.toString());
 		}
 
