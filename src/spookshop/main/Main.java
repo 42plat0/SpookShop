@@ -8,6 +8,9 @@ import spookshop.base.Product;
 import spookshop.base.ProductFactory;
 import spookshop.decorators.BloodyPackagingDecorator;
 import spookshop.decorators.PackagingDecorator;
+import spookshop.payment.BloodPayment;
+import spookshop.payment.PaymentContext;
+import spookshop.payment.PaymentStrategy;
 
 public class Main {
 
@@ -22,15 +25,16 @@ public class Main {
 		p.setPrice(1.32f);
 		p.setCategory(Category.BEVERAGE);
 
-		inventory.addItem(p);
-
+		IProduct prod1 = new PackagingDecorator(p);
+		IProduct prod2 = new BloodyPackagingDecorator(prod1);
+		inventory.addItems(p, prod1, prod2);
 		for (IProduct prod : inventory.getItems()) {
-			System.out.println(prod.toString());
-			prod = new PackagingDecorator(prod);
-			System.out.println(prod.toString());
-			prod = new BloodyPackagingDecorator(prod);
 			System.out.println(prod.toString());
 		}
 
+		PaymentContext context = new PaymentContext();
+		PaymentStrategy payment = new BloodPayment();
+		context.setStrategy(payment);
+		context.pay(inventory.getItems());
 	}
 }
