@@ -1,5 +1,7 @@
 package spookshop.main;
 
+import java.io.BufferedReader;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.lang.reflect.Field;
@@ -32,12 +34,26 @@ public class SpookShopApplication {
 			myWriter.write(sb.toString());
 			myWriter.close();
 		} catch (IOException e) {
-			System.out.println("An error occurred.");
-			e.printStackTrace(); // Print error details
+			throwException(e);
 		}
 	}
 
-	public static void readFile() {
+	public static Object[] readFile(String fileName) {
+		try {
+			FileReader reader = new FileReader(RESOURCE_FOLDER + fileName);
+			BufferedReader br = new BufferedReader(reader);
+			String line;
 
+//			myReader.read();
+
+		} catch (IOException e) {
+			throwException(e);
+		}
+
+	}
+
+	private static void throwException(Exception e) {
+		System.out.println("An error occurred.");
+		e.printStackTrace(); // Print error details
 	}
 }
