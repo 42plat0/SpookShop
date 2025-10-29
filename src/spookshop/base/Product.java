@@ -1,6 +1,6 @@
 package spookshop.base;
 
-public class Product {
+public class Product implements IProduct {
 
 	private String name;
 	private Float price;
@@ -15,6 +15,7 @@ public class Product {
 		this.category = category;
 	}
 
+	@Override
 	public String getName() {
 		return name;
 	}
@@ -23,6 +24,7 @@ public class Product {
 		this.name = name;
 	}
 
+	@Override
 	public Float getPrice() {
 		return price;
 	}
@@ -31,6 +33,7 @@ public class Product {
 		this.price = price;
 	}
 
+	@Override
 	public Category getCategory() {
 		return category;
 	}
@@ -42,7 +45,7 @@ public class Product {
 	@Override
 	public String toString() {
 		StringBuilder sb = new StringBuilder();
-		sb.append("Item: ").append(name).append(", ").append(price).append("$, ").append("category: ").append(category);
+		sb.append("Produktas: ").append(getName()).append(", ").append(getPrice()).append("$, ").append(getCategory());
 		return sb.toString();
 	}
 }

@@ -5,7 +5,7 @@ import java.util.List;
 
 public class Inventory implements Observable {
 	private static Inventory inventory;
-	private List<Product> items;
+	private List<IProduct> items;
 	private List<Observer> observers = new ArrayList<Observer>();
 
 	private Inventory() {
@@ -18,15 +18,15 @@ public class Inventory implements Observable {
 		return inventory;
 	}
 
-	public void addItem(Product product) {
+	public void addItem(IProduct product) {
 		if (items == null) {
-			items = new ArrayList<Product>();
+			items = new ArrayList<IProduct>();
 		}
 		items.add(product);
 		notifyObservers(product);
 	}
 
-	public List<Product> getItems() {
+	public List<IProduct> getItems() {
 		return items;
 	}
 
