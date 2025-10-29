@@ -13,7 +13,7 @@ public class SpookShopApplication {
 
 	private final static String RESOURCE_FOLDER = "resources/";
 	public final static String CART_FILE = "cart.csv";
-	public final static String PRODUCTS_FILE = "product.csv";
+	public final static String PRODUCTS_FILE = "products.csv";
 
 	public void run() {
 
@@ -38,17 +38,29 @@ public class SpookShopApplication {
 		}
 	}
 
-	public static Object[] readFile(String fileName) {
+	public static void readFile(String fileName) {
 		try {
 			FileReader reader = new FileReader(RESOURCE_FOLDER + fileName);
 			BufferedReader br = new BufferedReader(reader);
-			String line;
 
-//			myReader.read();
+			String line; 
+      String[] headers = br.readLine().split(",");
+      List<IProduct> products = new ArrayList<IProduct>();
+      List<String[]> readVals = new ArrayList<String[]>();
+      
+      while((line = br.readLine()) != null){
+        String[] rowVals = line.split(",");
+        readVals.add(rowVals);
+        new Product(rowVals[0], rowVals[1], rowVals[2]);
+      }
 
+      for(int i = 0; i < readVals.size(); i++){
+        String header = headers[i];
+      }
 		} catch (IOException e) {
 			throwException(e);
 		}
+
 
 	}
 

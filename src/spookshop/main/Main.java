@@ -38,6 +38,8 @@ public class Main {
 		context.pay(inventory.getItems());
 
 		SpookShopApplication.writeFile(inventory.getItems(), SpookShopApplication.CART_FILE);
+
+    SpookShopApplication.readFile(SpookShopApplication.PRODUCTS_FILE);
 		/*
 		 * TODO
 		 * 
