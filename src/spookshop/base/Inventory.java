@@ -32,6 +32,12 @@ public class Inventory implements Observable {
 		}
 	}
 
+	public void addItems(List<IProduct> products) {
+		for (IProduct product : products) {
+			addItem(product);
+		}
+	}
+
 	public List<IProduct> getItems() {
 		return items;
 	}

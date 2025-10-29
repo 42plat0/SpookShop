@@ -30,13 +30,13 @@ public class Product implements IProduct {
 	}
 
 	public void setPrice(Object price) {
-    if (price instanceof Float){
-      this.price = price;
-    } else if (price instanceof String){
-      this.price = Float.valueOf(price);
-    } else{
-      this.price = 0;
-    }
+		if (price instanceof Float) {
+			this.price = (Float) price;
+		} else if (price instanceof String) {
+			this.price = Float.valueOf((String) price);
+		} else {
+			this.price = 0f;
+		}
 	}
 
 	@Override
@@ -45,14 +45,19 @@ public class Product implements IProduct {
 	}
 
 	public void setCategory(Object category) {
-    if (category instanceof Category){
-      this.category = category;
-    } else if (category instanceof String){
-      Category[] categories = Category.getDeclaringClass().getEnumConstants(); 
-      for (Category category : categories){
-        System.out.println(category.name());
-      }
-    }
+		if (category instanceof Category) {
+			this.category = (Category) category;
+		} else if (category instanceof String) {
+			String c = ((String) category).toUpperCase().trim();
+			// TODO ...
+			if ("EDIBLE".equals(c)) {
+				this.category = Category.EDIBLE;
+			} else if ("BEVERAGE".equals(c)) {
+				this.category = Category.BEVERAGE;
+			} else if ("DEADLY".equals(c)) {
+				this.category = Category.DEADLY;
+			}
+		}
 	}
 
 	@Override
