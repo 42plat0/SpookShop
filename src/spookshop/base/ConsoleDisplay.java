@@ -1,19 +1,18 @@
 package spookshop.base;
 
-import spookshop.base.Observer;
-import spookshop.base.Product;
-
 public class ConsoleDisplay implements Observer {
-  private Product newProduct;
+	private Product product;
 
-  @Override
-  public void update(Product product){
-    this.product = product;
-    display();
-  }
-  
-  private void display(){
-    System.out.println("Pridetas naujas produktas: " + newProduct.toString());
-  }
-  
+	@Override
+	public void update(Object o) {
+		if (o instanceof Product) {
+			this.product = (Product) o;
+			display();
+		}
+	}
+
+	private void display() {
+		System.out.println("Pridetas naujas produktas: " + product.toString());
+	}
+
 }

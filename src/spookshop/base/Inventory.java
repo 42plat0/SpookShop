@@ -1,48 +1,51 @@
 package spookshop.base;
 
-import java.util.List;
 import java.util.ArrayList;
-import spookshop.base.Product;
-import spookshop.base.Observable;
-import spookshop.base.Observer;
+import java.util.List;
 
 public class Inventory implements Observable {
-  private static List<Product> items;
-  private List<Observer> observers;
+	private static Inventory inventory;
+	private List<Product> items;
+	private List<Observer> observers = new ArrayList<Observer>();
 
-  private Inventory(){}
+	private Inventory() {
+	}
 
-  public static List<Product> getInstance(){
-    if (items == null){
-      items = new ArrayList<Product>();
-    }
-    return items;
-  }
-  
-  public static void addItem(Product product){
-    if (items == null){
-      items = new ArrayList<Product>();
-    }
-    items.add(product);
-    notifyObservers();
-  }
+	public static Inventory getInstance() {
+		if (inventory == null) {
+			inventory = new Inventory();
+		}
+		return inventory;
+	}
 
-  @Override
-  public void addObserver(Observer observer){
-    observers.add(observer);
-  }
+	public void addItem(Product product) {
+		if (items == null) {
+			items = new ArrayList<Product>();
+		}
+		items.add(product);
+		notifyObservers(product);
+	}
 
-  @Override
-  public void removeObserver(Observer o){
-    observers.remove(observer);
-  }
+	public List<Product> getItems() {
+		return items;
+	}
 
-  @Override
-  public void notifyObservers(){
-    for (Observer observer : observers){
-      observer.update();
-    }
+	@Override
+	public void addObserver(Observer observer) {
+		observers.add(observer);
+	}
 
-  }
+	@Override
+	public void removeObserver(Observer observer) {
+		observers.remove(observer);
+	}
+
+	@Override
+	public void notifyObservers(Object o) {
+		for (Observer observer : observers) {
+			observer.update(o);
+		}
+
+	}
 
 }
